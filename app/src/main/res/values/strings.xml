@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">VRdemo</string>
+    <string name="app_name" translatable="false">VRdemo</string>
+    <string name="query_hint">Hae asemaa</string>
 </resources>
