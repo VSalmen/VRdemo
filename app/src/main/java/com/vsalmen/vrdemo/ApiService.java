@@ -16,7 +16,9 @@ import java.util.Scanner;
 
 public class ApiService extends IntentService {
 
+    public final static String API_URL = "url";
     public final static String BUNDLED_LISTENER = "listener";
+    public final static String API_RESPONSE = "apiResponse";
 
     public ApiService() {
         super("ApiService");
@@ -24,11 +26,11 @@ public class ApiService extends IntentService {
 
     @Override
     public void onHandleIntent(Intent intent) {
-        String url = intent.getStringExtra("url");
+        String url = intent.getStringExtra(ApiService.API_URL);
         ResultReceiver receiver = intent.getParcelableExtra(ApiService.BUNDLED_LISTENER);
 
         Bundle bundle = new Bundle();
-        bundle.putString("data", getData(url));
+        bundle.putString(ApiService.API_RESPONSE, getData(url));
         receiver.send(Activity.RESULT_OK, bundle);
     }
 

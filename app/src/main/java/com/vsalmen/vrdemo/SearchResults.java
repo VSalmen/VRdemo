@@ -23,7 +23,7 @@ public class SearchResults extends AppCompatActivity {
     private void doSearch(String query) {
         String url = "https://rata.digitraffic.fi/api/v1/live-trains/station/" + query;
         Intent serviceIntent = new Intent(this, ApiService.class);
-        serviceIntent.putExtra("url", url);
+        serviceIntent.putExtra(ApiService.API_URL, url);
         serviceIntent.putExtra(ApiService.BUNDLED_LISTENER, new ResultReceiver(new Handler()) {
 
             @Override
@@ -31,7 +31,7 @@ public class SearchResults extends AppCompatActivity {
                super.onReceiveResult(resultCode, resultData);
 
                if (resultCode == Activity.RESULT_OK) {
-                   String data = resultData.getString("data");
+                   String data = resultData.getString(ApiService.API_RESPONSE);
 
                    TextView tw = (TextView) findViewById(R.id.textView);
                    tw.setText(data);
